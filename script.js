@@ -42,14 +42,34 @@ function levelUp(){
     let randNo = btns[randIdx];                          // Putting that no in btns(array) ex.btns[one]   
     let randBtn = document.querySelector(`.${randNo}`);  // Passing the above value in randBtn to pass further..!!
 
+    gameSeq.push(randNo)
+    console.log(gameSeq)
+    
+
 
     gameFlash(randBtn);                                   //  Passing randBtn into flash function
 }
 
-function btnPress(btn){
-    console.log("btn Pressed",this);
-    userFlash(this)
+function checkAns(){
+    let idx = level -1;
+    if(userSeq[idx] == gameSeq[idx] ){
+        console.log("same Value");
+        
+    }else{
+        h2.innerText = "Game Over! Press any key to start"
+    }
+}
 
+function btnPress(){
+    console.log("btn Pressed",this);
+    let btn = this;
+    userFlash(btn)
+
+    let userNo = btn.getAttribute('id')
+    userSeq.push(userNo)
+    console.log(userNo);
+    
+    checkAns();
 }
 
 let allBtns = document.querySelectorAll('.btn');
